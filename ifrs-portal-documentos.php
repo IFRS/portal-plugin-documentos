@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 /*
-Plugin Name: IFRS Portal Plugin Documentos
+Plugin Name: IFRS Portal Documentos
 Plugin URI:  https://github.com/IFRS/portal-plugin-documentos
 Description: Plugin para gerenciar Documentos.
 Version:     1.0.0
@@ -16,3 +16,4 @@ Domain Path: /lang
 require_once('taxonomy-single-term/class.taxonomy-single-term.php');
 require_once('documento-type.php');
 require_once('documento.php');
+require_once('permissions.php');
