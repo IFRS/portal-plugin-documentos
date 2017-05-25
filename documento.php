@@ -2,21 +2,21 @@
 if ( ! function_exists('documento_post_type') ) {
     function documento_post_type() {
         $labels = array(
-            'name'               => _x( 'Documentos', 'Post Type General Name', 'ifrs-portal-common-plugin' ),
-            'singular_name'      => _x( 'Documento', 'Post Type Singular Name', 'ifrs-portal-common-plugin' ),
-            'menu_name'          => __( 'Documentos', 'ifrs-portal-common-plugin' ),
-            'name_admin_bar'     => __( 'Documentos', 'ifrs-portal-common-plugin' ),
-            'parent_item_colon'  => __( 'Documento principal:', 'ifrs-portal-common-plugin' ),
-            'all_items'          => __( 'Todos os Documentos', 'ifrs-portal-common-plugin' ),
-            'add_new_item'       => __( 'Adicionar Novo Documento', 'ifrs-portal-common-plugin' ),
-            'add_new'            => __( 'Adicionar Novo', 'ifrs-portal-common-plugin' ),
-            'new_item'           => __( 'Novo Documento', 'ifrs-portal-common-plugin' ),
-            'edit_item'          => __( 'Editar Documento', 'ifrs-portal-common-plugin' ),
-            'update_item'        => __( 'Atualizar Documento', 'ifrs-portal-common-plugin' ),
-            'view_item'          => __( 'Ver Documento', 'ifrs-portal-common-plugin' ),
-            'search_items'       => __( 'Buscar Documento', 'ifrs-portal-common-plugin' ),
-            'not_found'          => __( 'Não encontrado', 'ifrs-portal-common-plugin' ),
-            'not_found_in_trash' => __( 'Não encontrado na Lixeira', 'ifrs-portal-common-plugin' ),
+            'name'               => _x( 'Documentos', 'Post Type General Name', 'ifrs-portal-plugin-documentos' ),
+            'singular_name'      => _x( 'Documento', 'Post Type Singular Name', 'ifrs-portal-plugin-documentos' ),
+            'menu_name'          => __( 'Documentos', 'ifrs-portal-plugin-documentos' ),
+            'name_admin_bar'     => __( 'Documentos', 'ifrs-portal-plugin-documentos' ),
+            'parent_item_colon'  => __( 'Documento principal:', 'ifrs-portal-plugin-documentos' ),
+            'all_items'          => __( 'Todos os Documentos', 'ifrs-portal-plugin-documentos' ),
+            'add_new_item'       => __( 'Adicionar Novo Documento', 'ifrs-portal-plugin-documentos' ),
+            'add_new'            => __( 'Adicionar Novo', 'ifrs-portal-plugin-documentos' ),
+            'new_item'           => __( 'Novo Documento', 'ifrs-portal-plugin-documentos' ),
+            'edit_item'          => __( 'Editar Documento', 'ifrs-portal-plugin-documentos' ),
+            'update_item'        => __( 'Atualizar Documento', 'ifrs-portal-plugin-documentos' ),
+            'view_item'          => __( 'Ver Documento', 'ifrs-portal-plugin-documentos' ),
+            'search_items'       => __( 'Buscar Documento', 'ifrs-portal-plugin-documentos' ),
+            'not_found'          => __( 'Não encontrado', 'ifrs-portal-plugin-documentos' ),
+            'not_found_in_trash' => __( 'Não encontrado na Lixeira', 'ifrs-portal-plugin-documentos' ),
         );
         $capabilities = array(
 			// meta caps (don't assign these to roles)
@@ -43,8 +43,8 @@ if ( ! function_exists('documento_post_type') ) {
 			'edit_published_posts'   => 'edit_documentos',
 		);
         $args = array(
-            'label'               => __( 'documento', 'ifrs-portal-common-plugin' ),
-            'description'         => __( 'Documentos para o Boletim de Serviço', 'ifrs-portal-common-plugin' ),
+            'label'               => __( 'documento', 'ifrs-portal-plugin-documentos' ),
+            'description'         => __( 'Documentos para o Boletim de Serviço', 'ifrs-portal-plugin-documentos' ),
             'labels'              => $labels,
             'supports'            => array( 'title', 'editor', 'revisions' ),
             'taxonomies'          => array( 'documento_type' ),
@@ -75,14 +75,14 @@ if ( ! function_exists('documento_post_type') ) {
 // MetaBox
 function documentos_meta_boxes( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title'      => __( 'Arquivo Associado', 'ifrs-portal-common-plugin' ),
+        'title'      => __( 'Arquivo Associado', 'ifrs-portal-plugin-documentos' ),
         'post_types' => 'documento',
         'priority'   => 'high',
         'fields'     => array(
             array(
                 'id'               => 'documento_file',
-                'name'             => __( 'Documento', 'ifrs-portal-common-plugin' ),
-                'desc'             => __( 'Envio do Documento', 'ifrs-portal-common-plugin' ),
+                'name'             => __( 'Documento', 'ifrs-portal-plugin-documentos' ),
+                'desc'             => __( 'Envio do Documento', 'ifrs-portal-plugin-documentos' ),
                 'type'             => 'file_advanced',
                 'max_file_uploads' => 1,
             ),
