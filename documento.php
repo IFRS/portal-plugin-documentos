@@ -75,7 +75,7 @@ if ( ! function_exists('documento_post_type') ) {
 // MetaBox
 function documentos_meta_boxes( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title'      => __( 'Arquivo Associado', 'ifrs-portal-plugin-documentos' ),
+        'title'      => __( 'Arquivos Associados', 'ifrs-portal-plugin-documentos' ),
         'post_types' => 'documento',
         'priority'   => 'high',
         'fields'     => array(
@@ -85,6 +85,12 @@ function documentos_meta_boxes( $meta_boxes ) {
                 'desc'             => __( 'Envio do Documento', 'ifrs-portal-plugin-documentos' ),
                 'type'             => 'file_advanced',
                 'max_file_uploads' => 1,
+            ),
+            array(
+                'id'               => 'documento_anexos',
+                'name'             => __( 'Anexos', 'ifrs-portal-plugin-documentos' ),
+                'desc'             => __( 'Envio dos Anexos do Documento', 'ifrs-portal-plugin-documentos' ),
+                'type'             => 'file_advanced'
             ),
         ),
     );
