@@ -6,6 +6,7 @@ add_action('init', function() {
     add_role('cadastrador_documentos', __('Cadastrador de Documentos'), array(
         'read'                  => true,
         'upload_files'          => true,
+        'manage_files'          => true,
 
         'create_documentos'     => true,
         'edit_documentos'       => true,
