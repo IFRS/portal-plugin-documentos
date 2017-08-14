@@ -44,7 +44,7 @@ if ( ! function_exists('documento_post_type') ) {
 		);
         $args = array(
             'label'               => __( 'documento', 'ifrs-portal-plugin-documentos' ),
-            'description'         => __( 'Documentos para o Boletim de Serviço', 'ifrs-portal-plugin-documentos' ),
+            'description'         => __( 'Documentos Gerais', 'ifrs-portal-plugin-documentos' ),
             'labels'              => $labels,
             'supports'            => array( 'title', 'editor', 'revisions' ),
             'taxonomies'          => array( 'documento_type', 'documento_origin' ),
