@@ -29,16 +29,16 @@ if ( ! function_exists('documento_post_type') ) {
 
 			// primitive caps used outside of map_meta_cap()
 			'edit_posts'             => 'edit_documentos',
-			'edit_others_posts'      => 'manage_documentos',
-			'publish_posts'          => 'manage_documentos',
+			'edit_others_posts'      => 'edit_documentos',
+			'publish_posts'          => 'publish_documentos',
 			'read_private_posts'     => 'read',
 
 			// primitive caps used inside of map_meta_cap()
 			'read'                   => 'read',
-			'delete_posts'           => 'manage_documentos',
-			'delete_private_posts'   => 'manage_documentos',
-			'delete_published_posts' => 'manage_documentos',
-			'delete_others_posts'    => 'manage_documentos',
+			'delete_posts'           => 'delete_documentos',
+			'delete_private_posts'   => 'delete_documentos',
+			'delete_published_posts' => 'delete_documentos',
+			'delete_others_posts'    => 'delete_documentos',
 			'edit_private_posts'     => 'edit_documentos',
 			'edit_published_posts'   => 'edit_documentos',
 		);
