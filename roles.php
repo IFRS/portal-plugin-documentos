@@ -6,7 +6,7 @@ add_action('init', function() {
     $wp_post_types['attachment']->cap->delete_posts = 'delete_files';
 });
 
-register_activation_hook(__FILE__, function () {
+function ifrs_portal_documentos_addRoles() {
     if (!get_role('cadastrador_documentos')) {
         add_role('cadastrador_documentos', __('Cadastrador de Documentos'), array(
             'read'                    => true,
@@ -40,13 +40,13 @@ register_activation_hook(__FILE__, function () {
             'assign_documento_origin' => true
         ));
     }
-});
+}
 
-register_deactivation_hook(__FILE__, function () {
+function ifrs_portal_documentos_removeRoles() {
     if (get_role('cadastrador_documentos')) {
         remove_role('cadastrador_documentos');
     }
     if (get_role('gerente_documentos')) {
         remove_role('gerente_documentos');
     }
-});
+}

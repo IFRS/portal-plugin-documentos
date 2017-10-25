@@ -18,3 +18,13 @@ require_once('documento-type.php');
 require_once('documento-origin.php');
 require_once('documento.php');
 require_once('roles.php');
+
+register_activation_hook(__FILE__, function () {
+    flush_rewrite_rules();
+    ifrs_portal_documentos_addRoles();
+});
+
+register_deactivation_hook(__FILE__, function () {
+    flush_rewrite_rules();
+    ifrs_portal_documentos_removeRoles();
+});
