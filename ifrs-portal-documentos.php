@@ -17,3 +17,4 @@ require_once('taxonomy-single-term/class.taxonomy-single-term.php');
 require_once('documento-type.php');
 require_once('documento-origin.php');
 require_once('documento.php');
+require_once('roles.php');
