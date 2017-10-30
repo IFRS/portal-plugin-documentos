@@ -7,6 +7,14 @@ add_action('init', function() {
 });
 
 function ifrs_portal_documentos_addRoles() {
+    $admin = get_role('administrator');
+    $admin->add_cap('create_documentos');
+    $admin->add_cap('publish_documentos');
+    $admin->add_cap('edit_documentos');
+    $admin->add_cap('delete_documentos');
+    $admin->add_cap('assign_documento_type');
+    $admin->add_cap('assign_documento_origin');
+
     if (!get_role('cadastrador_documentos')) {
         add_role('cadastrador_documentos', __('Cadastrador de Documentos'), array(
             'read'                    => true,
@@ -43,6 +51,14 @@ function ifrs_portal_documentos_addRoles() {
 }
 
 function ifrs_portal_documentos_removeRoles() {
+    $admin = get_role('administrator');
+    $admin->remove_cap('create_documentos');
+    $admin->remove_cap('publish_documentos');
+    $admin->remove_cap('edit_documentos');
+    $admin->remove_cap('delete_documentos');
+    $admin->remove_cap('assign_documento_type');
+    $admin->remove_cap('assign_documento_origin');
+
     if (get_role('cadastrador_documentos')) {
         remove_role('cadastrador_documentos');
     }
