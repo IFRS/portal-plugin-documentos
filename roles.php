@@ -2,8 +2,8 @@
 // Fix Media Permissions
 add_action('init', function() {
     global $wp_post_types;
-    $wp_post_types['attachment']->cap->edit_posts = 'edit_files';
-    $wp_post_types['attachment']->cap->delete_posts = 'delete_files';
+    $wp_post_types['attachment']->cap->edit_posts = 'edit_uploads';
+    $wp_post_types['attachment']->cap->delete_posts = 'delete_uploads';
 });
 
 function ifrs_portal_documentos_addRoles() {
@@ -19,8 +19,8 @@ function ifrs_portal_documentos_addRoles() {
         add_role('cadastrador_documentos', __('Cadastrador de Documentos'), array(
             'read'                    => true,
             'upload_files'            => true,
-            'edit_files'              => true,
-            'delete_files'            => false,
+            'edit_uploads'            => true,
+            'delete_uploads'          => false,
 
             'create_documentos'       => true,
             'publish_documentos'      => true,
@@ -36,8 +36,8 @@ function ifrs_portal_documentos_addRoles() {
         add_role('gerente_documentos', __('Gerente de Documentos'), array(
             'read'                    => true,
             'upload_files'            => true,
-            'edit_files'              => true,
-            'delete_files'            => true,
+            'edit_uploads'            => true,
+            'delete_uploads'          => true,
 
             'create_documentos'       => true,
             'publish_documentos'      => true,
