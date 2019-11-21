@@ -95,6 +95,40 @@ function documentos_meta_boxes( $meta_boxes ) {
         ),
     );
 
+    $meta_boxes[] = array(
+        'title'      => __( 'Origem do Documento', 'ifrs-portal-plugin-documentos' ),
+        'context'    => 'side',
+        'priority'   => 'low',
+        'post_types' => 'documento',
+        'fields'     => array(
+            array(
+                'id'             => 'documento_origin',
+                'type'           => 'taxonomy',
+                'taxonomy'       => 'documento_origin',
+                'add_new'        => false,
+                'remove_default' => true,
+                'field_type'     => 'radio_list',
+            )
+        )
+    );
+
+    $meta_boxes[] = array(
+        'title'      => __( 'Tipo do Documento', 'ifrs-portal-plugin-documentos' ),
+        'context'    => 'side',
+        'priority'   => 'low',
+        'post_types' => 'documento',
+        'fields'     => array(
+            array(
+                'id'             => 'documento_type',
+                'type'           => 'taxonomy',
+                'taxonomy'       => 'documento_type',
+                'add_new'        => false,
+                'remove_default' => true,
+                'field_type'     => 'radio_list',
+            )
+        )
+    );
+
     return $meta_boxes;
 }
 add_filter( 'rwmb_meta_boxes', 'documentos_meta_boxes' );

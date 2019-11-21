@@ -42,12 +42,3 @@ if ( ! function_exists( 'documento_type_taxonomy' ) ) {
     // Hook into the 'init' action
     add_action( 'init', 'documento_type_taxonomy', 0 );
 }
-
-// Single Term
-$single_term_documento_type = new Taxonomy_Single_Term( 'documento_type' );
-$single_term_documento_type->set( 'priority', 'default' );
-// $single_term_documento_type->set( 'context', 'normal' );
-$single_term_documento_type->set( 'metabox_title', __( 'Tipo', 'ifrs-portal-plugin-documentos' ) );
-$single_term_documento_type->set( 'force_selection', true );
-$single_term_documento_type->set( 'indented', false );
-$single_term_documento_type->set( 'allow_new_terms', false );

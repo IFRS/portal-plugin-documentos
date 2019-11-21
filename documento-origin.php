@@ -42,12 +42,3 @@ if ( ! function_exists( 'documento_origin_taxonomy' ) ) {
     // Hook into the 'init' action
     add_action( 'init', 'documento_origin_taxonomy', 0 );
 }
-
-// Single Term
-$single_term_documento_origin = new Taxonomy_Single_Term( 'documento_origin' );
-$single_term_documento_origin->set( 'priority', 'default' );
-// $single_term_documento_origin->set( 'context', 'normal' );
-$single_term_documento_origin->set( 'metabox_title', __( 'Origem', 'ifrs-portal-plugin-documentos' ) );
-$single_term_documento_origin->set( 'force_selection', false );
-$single_term_documento_origin->set( 'indented', false );
-$single_term_documento_origin->set( 'allow_new_terms', false );
