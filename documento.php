@@ -132,3 +132,26 @@ function documentos_meta_boxes( $meta_boxes ) {
     return $meta_boxes;
 }
 add_filter( 'rwmb_meta_boxes', 'documentos_meta_boxes' );
+
+/**
+ * Templates
+ */
+add_filter('archive_template', function($template) {
+    global $post;
+
+    if ( is_post_type_archive('documento') && empty(locate_template('archive-documento.php', false))) {
+        return plugin_dir_path(__FILE__) . 'templates/archive-documento.php';
+    }
+
+    return $template;
+});
+
+add_filter('single_template', function($template) {
+    global $post;
+
+    if ( is_singular('documento') && empty(locate_template('single-documento.php', false))) {
+        return plugin_dir_path(__FILE__) . 'templates/single-documento.php';
+    }
+
+    return $template;
+});

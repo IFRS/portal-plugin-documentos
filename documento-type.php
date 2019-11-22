@@ -42,3 +42,16 @@ if ( ! function_exists( 'documento_type_taxonomy' ) ) {
     // Hook into the 'init' action
     add_action( 'init', 'documento_type_taxonomy', 0 );
 }
+
+/**
+ * Template
+ */
+add_filter('taxonomy_template', function($template) {
+    global $post;
+
+    if ( is_tax('documento_type') && empty(locate_template('taxonomy-documento_type.php', false))) {
+        return plugin_dir_path(__FILE__) . 'templates/taxonomy-documento_type.php';
+    }
+
+    return $template;
+});
