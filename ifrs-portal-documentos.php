@@ -18,6 +18,7 @@ require_once('documento-origin.php');
 require_once('documento.php');
 require_once('queries.php');
 require_once('roles.php');
+require_once('widgets/latest.php');
 
 register_activation_hook(__FILE__, function () {
     flush_rewrite_rules();
