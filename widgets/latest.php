@@ -3,8 +3,8 @@ class Documentos_Widget extends WP_Widget {
     function __construct() {
         parent::__construct(
             'documentos_widget',
-            esc_html__( 'Documentos', 'ifrs-portal-plugin-documentos' ),
-            array( 'description' => esc_html__( 'Últimos Documentos', 'ifrs-portal-plugin-documentos' ), )
+            esc_html__( 'Últimos Documentos', 'ifrs-portal-plugin-documentos' ),
+            array( 'description' => esc_html__( 'Últimos Documentos cadastrados ou atualizados', 'ifrs-portal-plugin-documentos' ), )
         );
     }
 
@@ -24,42 +24,33 @@ class Documentos_Widget extends WP_Widget {
 
         if ($latest_documentos->have_posts()) :
 ?>
-            <div class="row">
-                <div class="col-12">
-                    <div class="ultimos-documentos">
-                        <?php
-                            if ( ! empty( $instance['title'] ) ) {
-                                echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
-                            }
-                        ?>
-                        <?php while ($latest_documentos->have_posts()) : $latest_documentos->the_post(); ?>
-                            <div class="row ultimos-documentos__documento">
-                                <div class="col-12">
-                                    <p class="ultimos-documentos__documento-datetime">
-                                        <?php echo get_the_modified_date('d/m/Y'); ?>
-                                        &agrave;s
-                                        <?php echo get_the_modified_time('G\hi'); ?>
-                                    </p>
-                                    &bull;
-                                    <?php echo get_the_term_list(get_the_ID(), 'documento_type', '<ul class="ultimos-documentos__documento-types"><li>', ',&nbsp;</li><li>', '</li></ul>'); ?>
-                                    <h3 class="ultimos-documentos__documento-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                                </div>
-                            </div>
-                        <?php endwhile; ?>
-
+            <div class="ultimos-documentos">
+                <?php
+                    if ( ! empty( $instance['title'] ) ) {
+                        echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+                    }
+                ?>
+                <?php while ($latest_documentos->have_posts()) : $latest_documentos->the_post(); ?>
+                    <div class="row ultimos-documentos__documento">
+                        <div class="col-12">
+                            <p class="ultimos-documentos__documento-datetime">
+                                <?php echo get_the_modified_date('d/m/Y'); ?>
+                                &agrave;s
+                                <?php echo get_the_modified_time('G\hi'); ?>
+                            </p>
+                            &bull;
+                            <?php echo get_the_term_list(get_the_ID(), 'documento_type', '<ul class="ultimos-documentos__documento-types"><li>', ',&nbsp;</li><li>', '</li></ul>'); ?>
+                            <h3 class="ultimos-documentos__documento-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                        </div>
                     </div>
-                </div>
+                <?php endwhile; ?>
             </div>
 
             <?php wp_reset_query(); ?>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="acesso-todos-documentos">
-                        <hr class="acesso-todos-documentos__separador">
-                        <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="float-right acesso-todos-documentos__link"><?php _e('Acesse todos os Documentos'); ?></a>
-                    </div>
-                </div>
+            <div class="acesso-todos-documentos">
+                <hr class="acesso-todos-documentos__separador">
+                <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="float-right acesso-todos-documentos__link"><?php _e('Acesse todos os Documentos'); ?></a>
             </div>
 <?php
         endif;
