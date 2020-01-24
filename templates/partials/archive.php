@@ -7,11 +7,11 @@
                     _e('Documentos', 'ifrs-portal-plugin-documentos');
                 }
 
-                if (is_tax('documento_type')) {
+                if (is_tax('documento_type') && !isset($_POST['documento_type'])) {
                     single_term_title();
                 }
 
-                if (is_tax('documento_origin')) {
+                if (is_tax('documento_origin') && !isset($_POST['documento_origin'])) {
                     printf(__('Documentos de %s', 'ifrs-portal-plugin-documentos'), single_term_title('', false));
                 }
 
