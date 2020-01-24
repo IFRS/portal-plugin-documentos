@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-hover table-documentos">
+    <table class="table table-hover documentos__table">
         <thead>
             <tr>
                 <th><?php _e('&Uacute;ltima Atualiza&ccedil;&atilde;o'); ?></th>

@@ -1,9 +1,11 @@
+<?php the_post(); ?>
+
 <div class="row">
     <div class="col-12 col-lg-9">
-        <article id="documento">
+        <article class="documento">
             <div class="row">
                 <div class="col-12">
-                    <h2 class="title"><?php the_title(); ?></h2>
+                    <h2 class="documento__title"><?php the_title(); ?></h2>
                 </div>
             </div>
             <div class="row">
@@ -29,7 +31,7 @@
             ?>
                 <div class="col-12">
                     <div class="table-responsive">
-                        <table class="table table-striped table-arquivos">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th><?php _e('Publicado em'); ?></th>
@@ -58,10 +60,10 @@
         </div>
     </div>
     <div class="col-12 col-lg-3">
-        <aside>
+        <aside class="documento__dados">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="title-box"><?php _e('Dados do Documento'); ?></h3>
+                    <h3 class="documento__dados-title"><?php _e('Dados do Documento'); ?></h3>
                     <p>
                         <strong>Tipo</strong>
                         <br>
