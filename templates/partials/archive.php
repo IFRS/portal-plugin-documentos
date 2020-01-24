@@ -40,46 +40,6 @@
         <?php endif; ?>
     </div>
     <div class="col-12 col-lg-3">
-        <aside>
-            <div class="row">
-                <div class="col-12">
-                    <h3><?php _e('Tipos'); ?></h3>
-                    <ul class="side-list">
-                    <?php
-                        wp_list_categories(array(
-                            'title_li' => '',
-                            'taxonomy' => 'documento_type',
-                            'hide_empty' => false,
-                        ));
-                    ?>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <h3><?php _e('Origens'); ?></h3>
-                    <ul class="side-list">
-                    <?php
-                        wp_list_categories(array(
-                            'title_li' => '',
-                            'taxonomy' => 'documento_origin',
-                            'hide_empty' => false,
-                        ));
-                    ?>
-                    </ul>
-                </div>
-            </div>
-
-            <?php
-                if (is_post_type_archive('documento')) {
-                    load_template(plugin_dir_path(__FILE__) . 'filter.php');
-                }
-            ?>
-            <?php if (is_year() || is_month() || is_tax('documento_type')) : ?>
-                <br>
-                <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="btn btn-default btn-block"><?php _e('Todos os Documentos', 'ifrs-portal-theme'); ?></a>
-            <?php endif; ?>
-        </aside>
+        <?php load_template(plugin_dir_path(__FILE__) . 'filter.php'); ?>
     </div>
 </div>

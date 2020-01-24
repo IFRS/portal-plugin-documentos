@@ -1,36 +1,46 @@
-<h3 class="text-center"><?php _e('Filtros'); ?></h3>
+<?php
+    $tipos = get_terms(array(
+        'taxonomy' => 'documento_type',
+        'hide_empty' => false,
+        'orderby' => 'term_order',
+    ));
 
-<div id="documento-filter-accordion">
-    <div class="card card-body">
-        <div class="btn-group d-flex" role="group" aria-label="Filtros">
-            <a id="toggleYearly" class="btn btn-primary" role="button" data-toggle="collapse" data-parent="#documento-filter-accordion" href="#collapseYearly" aria-expanded="true" aria-controls="collapseYearly">
-                <?php _e('por Ano'); ?>
-            </a>
-            <a id="toggleMonthly" class="btn btn-primary" role="button" data-toggle="collapse" data-parent="#documento-filter-accordion" href="#collapseMonthly" aria-expanded="true" aria-controls="collapseMonthly">
-                <?php _e('por M&ecirc;s'); ?>
-            </a>
+    $origens = get_terms(array(
+        'taxonomy' => 'documento_origin',
+        'hide_empty' => false,
+        'orderby' => 'term_order',
+    ));
+?>
+<aside class="filter">
+    <h3 class="filter__title"><?php _e('Filtros', 'ifrs-portal-plugin-documentos'); ?></h3>
+
+    <form action="<?php echo get_post_type_archive_link( 'documento' ); ?>" method="POST" class="filter__form">
+        <fieldset>
+            <legend>Tipo</legend>
+            <?php foreach ($tipos as $tipo): ?>
+                <?php $field_id = uniqid(); ?>
+                <?php $tipo_check = (isset($_POST['documento_type']) && in_array($tipo->slug, $_POST['documento_type'])) || is_tax('documento_type', $tipo->slug); ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="documento_type[]" value="<?php echo $tipo->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $tipo_check ? 'checked' : ''; ?>>
+                    <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $tipo->name; ?></label>
+                </div>
+            <?php endforeach; ?>
+        </fieldset>
+        <fieldset>
+            <legend>Origem</legend>
+            <?php foreach ($origens as $origem): ?>
+                <?php $field_id = uniqid(); ?>
+                <?php $origem_check = (isset($_POST['documento_origin']) && in_array($origem->slug, $_POST['documento_origin'])) || is_tax('documento_origin', $origem->slug); ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="documento_origin[]" value="<?php echo $origem->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $origem_check ? 'checked' : ''; ?>>
+                    <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $origem->name; ?></label>
+                </div>
+            <?php endforeach; ?>
+        </fieldset>
+
+        <div class="btn-group" role="group" aria-label="Ações do Filtro">
+            <input type="submit" value="Filtrar" class="btn btn-primary">
+            <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="btn btn-outline-secondary"><?php _e('Limpar Filtros', 'ifrs-portal-plugin-documentos'); ?></a>
         </div>
-        <div id="collapseYearly" class="collapse<?php if (is_year()) echo ' in'; ?>" role="tabpanel" aria-labelledby="toggleYearly">
-            <ul class="side-list">
-            <?php
-                wp_get_archives(array(
-                    'type'      => 'yearly',
-                    'order'     => 'DESC',
-                    'post_type' => 'documento'
-                ));
-            ?>
-            </ul>
-        </div>
-        <div id="collapseMonthly" class="collapse<?php if (is_month()) echo ' in'; ?>" role="tabpanel" aria-labelledby="toggleMonthly">
-            <ul class="side-list">
-            <?php
-                wp_get_archives(array(
-                    'type'      => 'monthly',
-                    'order'     => 'DESC',
-                    'post_type' => 'documento'
-                ));
-            ?>
-            </ul>
-        </div>
-    </div>
-</div>
+    </form>
+</aside>
