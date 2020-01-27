@@ -107,7 +107,7 @@ function documentos_meta_boxes( $meta_boxes ) {
                 'taxonomy'       => 'documento_origin',
                 'add_new'        => false,
                 'remove_default' => true,
-                'field_type'     => 'radio_list',
+                'field_type'     => 'checkbox_list',
             )
         )
     );
