@@ -4,7 +4,7 @@ defined('ABSPATH') or die('No script kiddies please!');
 Plugin Name: IFRS Portal Documentos
 Plugin URI:  https://github.com/IFRS/portal-plugin-documentos
 Description: Plugin para gerenciar Documentos.
-Version:     1.2.2
+Version:     1.3.0
 Author:      Ricardo Moro
 Author URI:  https://github.com/ricardomoro
 License:     GPL3
