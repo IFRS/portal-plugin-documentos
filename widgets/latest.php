@@ -31,17 +31,15 @@ class Documentos_Widget extends WP_Widget {
                     }
                 ?>
                 <?php while ($latest_documentos->have_posts()) : $latest_documentos->the_post(); ?>
-                    <div class="row ultimos-documentos__documento">
-                        <div class="col-12">
-                            <p class="ultimos-documentos__documento-datetime">
-                                <?php echo get_the_modified_date('d/m/Y'); ?>
-                                &agrave;s
-                                <?php echo get_the_modified_time('G\hi'); ?>
-                            </p>
-                            &bull;
-                            <?php echo get_the_term_list(get_the_ID(), 'documento_type', '<ul class="ultimos-documentos__documento-types"><li>', ',&nbsp;</li><li>', '</li></ul>'); ?>
-                            <h3 class="ultimos-documentos__documento-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                        </div>
+                    <div class="ultimos-documentos__documento">
+                        <p class="ultimos-documentos__documento-datetime">
+                            <?php echo get_the_modified_date('d/m/Y'); ?>
+                            &agrave;s
+                            <?php echo get_the_modified_time('G\hi'); ?>
+                        </p>
+                        &bull;
+                        <?php echo get_the_term_list(get_the_ID(), 'documento_type', '<ul class="ultimos-documentos__documento-types"><li>', ',&nbsp;</li><li>', '</li></ul>'); ?>
+                        <h3 class="ultimos-documentos__documento-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                     </div>
                 <?php endwhile; ?>
             </div>
@@ -50,7 +48,7 @@ class Documentos_Widget extends WP_Widget {
 
             <div class="acesso-todos-documentos">
                 <hr class="acesso-todos-documentos__separador">
-                <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="float-right acesso-todos-documentos__link"><?php _e('Acesse todos os Documentos'); ?></a>
+                <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="acesso-todos-documentos__link"><?php _e('Acesse todos os Documentos'); ?></a>
             </div>
 <?php
         endif;

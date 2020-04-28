@@ -40,7 +40,7 @@
 
         <div class="btn-group" role="group" aria-label="Ações do Filtro">
             <input type="submit" value="Filtrar" class="btn btn-primary">
-            <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="btn btn-outline-secondary"><?php _e('Limpar Filtros', 'ifrs-portal-plugin-documentos'); ?></a>
+            <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="btn btn-outline-secondary"><?php _e('Limpar', 'ifrs-portal-plugin-documentos'); ?></a>
         </div>
     </form>
 </aside>
