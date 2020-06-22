@@ -155,3 +155,14 @@ add_filter('single_template', function($template) {
 
     return $template;
 });
+
+/**
+ * Remove botão de mídia
+ */
+add_filter('wp_editor_settings', function($settings) {
+    global $current_screen;
+    if ($current_screen->post_type == 'documento') {
+        $settings['media_buttons'] = false;
+    }
+    return $settings;
+});
