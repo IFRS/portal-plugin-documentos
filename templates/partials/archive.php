@@ -19,9 +19,7 @@
             }
             ?>
         </h2>
-        <p><?php _e('Esta página disponibiliza documentos oficiais emitidos pela Reitoria do IFRS: atas, boletins de pessoal, boletins de serviço, contratos, documentos norteadores da instituição, instruções normativas, planos de ação, políticas, portarias, relatórios e resoluções.', 'ifrs-portal-plugin-documentos'); ?></p>
-        <p><?php _e('A relação abaixo está organizada por ordem de publicação ou atualização, os mais atuais aparecem primeiro. Mas é possível, também, consultar por categorias. Basta clicar, no menu à direita, no tipo de documento procurado.', 'ifrs-portal-plugin-documentos'); ?></p>
-        <p><?php _e('Documentos antigos podem ser buscados no site anterior do IFRS, na página do setor ao qual o documento está vinculado.', 'ifrs-portal-plugin-documentos'); ?></p>
+        <?php echo wpautop(get_option( 'ifrs_documentos_intro' )); ?>
         <?php if (have_posts()) : ?>
             <?php load_template(plugin_dir_path(__FILE__) . 'loop.php'); ?>
         <?php else : ?>
