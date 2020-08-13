@@ -1,6 +1,5 @@
 <?php
 if (is_admin()) {
-
     $options['intro'] = get_option( 'ifrs_documentos_intro' );
 
     add_action( 'admin_menu', function() {
@@ -9,7 +8,7 @@ if (is_admin()) {
             'Configurações de Documentos', // page_title
             'Configurações', // menu_title
             'manage_options', // capability
-            'settings', // menu_slug
+            'documento_settings', // menu_slug
             function() {
     ?>
                 <div class="wrap">
