@@ -18,7 +18,7 @@ if (is_admin()) {
 
                     <form method="POST" action="options.php">
                         <?php
-                            settings_fields( 'default' );
+                            settings_fields( 'ifrs_documentos-default' );
                             do_settings_sections( 'ifrs_documentos-admin' );
                             submit_button();
                         ?>
@@ -31,7 +31,7 @@ if (is_admin()) {
 
     add_action( 'admin_init', function() use ($options) {
         register_setting(
-            'default', // option_group
+            'ifrs_documentos-default', // option_group
             'ifrs_documentos_intro', // option_name
             array ( // args
                 'type' => 'string',
@@ -65,7 +65,7 @@ if (is_admin()) {
         );
 
         add_settings_section(
-            'default', // id
+            'ifrs_documentos-default', // id
             'Geral', // title
             function() {}, // callback
             'ifrs_documentos-admin' // page
@@ -82,7 +82,7 @@ if (is_admin()) {
                 );
             },
             'ifrs_documentos-admin', // page
-            'default' // section
+            'ifrs_documentos-default' // section
         );
     } );
 }
