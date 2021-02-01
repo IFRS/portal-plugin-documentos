@@ -11,7 +11,7 @@
         'orderby' => 'term_order',
     ));
 
-    $has_filter = isset($_POST['documento_type']) || isset($_POST['documento_origin']);
+    $has_filter = !empty($_POST['documento_type']) || !empty($_POST['documento_origin']);
 ?>
 <aside class="filter">
     <?php $collapse_id = uniqid(); ?>
@@ -32,7 +32,7 @@
                 <legend>Tipo</legend>
                 <?php foreach ($tipos as $tipo): ?>
                     <?php $field_id = uniqid(); ?>
-                    <?php $tipo_check = (isset($_POST['documento_type']) && in_array($tipo->slug, $_POST['documento_type'])) || is_tax('documento_type', $tipo->slug); ?>
+                    <?php $tipo_check = (!empty($_POST['documento_type']) && in_array($tipo->slug, $_POST['documento_type'])) || is_tax('documento_type', $tipo->slug); ?>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" name="documento_type[]" value="<?php echo $tipo->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $tipo_check ? 'checked' : ''; ?>>
                         <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $tipo->name; ?></label>
@@ -43,7 +43,7 @@
                 <legend>Origem</legend>
                 <?php foreach ($origens as $origem): ?>
                     <?php $field_id = uniqid(); ?>
-                    <?php $origem_check = (isset($_POST['documento_origin']) && in_array($origem->slug, $_POST['documento_origin'])) || is_tax('documento_origin', $origem->slug); ?>
+                    <?php $origem_check = (!empty($_POST['documento_origin']) && in_array($origem->slug, $_POST['documento_origin'])) || is_tax('documento_origin', $origem->slug); ?>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" name="documento_origin[]" value="<?php echo $origem->slug; ?>" id="<?php echo $field_id; ?>" <?php echo $origem_check ? 'checked' : ''; ?>>
                         <label class="form-check-label" for="<?php echo $field_id; ?>"><?php echo $origem->name; ?></label>
