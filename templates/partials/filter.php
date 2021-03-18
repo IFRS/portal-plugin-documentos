@@ -11,7 +11,7 @@
         'orderby' => 'term_order',
     ));
 
-    $has_filter = !empty($_POST['documento_type']) || !empty($_POST['documento_origin']);
+    $has_filter = !empty($_POST['documento-data-inicio']) || !empty($_POST['documento-data-fim']) || !empty($_POST['documento_type']) || !empty($_POST['documento_origin']);
 ?>
 <aside class="filter">
     <?php $collapse_id = uniqid(); ?>
@@ -28,6 +28,21 @@
 
     <div class="collapse<?php echo ($has_filter) ? ' show' : ''; ?>" id="collpse-<?php echo $collapse_id; ?>">
         <form action="<?php echo get_post_type_archive_link( 'documento' ); ?>" method="POST" class="filter__form">
+            <fieldset class="form-row">
+                <legend class="col-12">Data do Documento</legend>
+                <div class="form-group col-12 col-sm-6">
+                    <?php $field_id = uniqid(); ?>
+                    <label for="<?php echo $field_id; ?>" class="mb-sm-0 mr-sm-1">de</label>
+                    <input type="date" id="<?php echo $field_id; ?>" name="documento-data-inicio" value="<?php echo (!empty($_POST['documento-data-inicio'])) ? sanitize_text_field($_POST['documento-data-inicio']) : ''; ?>" class="form-control form-control-sm mr-sm-1">
+                    <small class="form-text text-muted">No formato <em>dia/mês/ano</em>, por exemplo 29/12/2008</small>
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <?php $field_id = uniqid(); ?>
+                    <label for="<?php echo $field_id; ?>" class="mb-sm-0 mr-sm-1">até</label>
+                    <input type="date" id="<?php echo $field_id; ?>" name="documento-data-fim" value="<?php echo (!empty($_POST['documento-data-fim'])) ? sanitize_text_field($_POST['documento-data-fim']) : ''; ?>" class="form-control form-control-sm">
+                    <small class="form-text text-muted">No formato <em>dia/mês/ano</em>, por exemplo 29/12/2008</small>
+                </div>
+            </fieldset>
             <fieldset>
                 <legend>Tipo</legend>
                 <?php foreach ($tipos as $tipo): ?>
