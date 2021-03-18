@@ -32,7 +32,7 @@
             </div>
         <?php else : ?>
             <div class="alert alert-warning" role="alert">
-                <p><strong><?php _e('Ops!'); ?></strong>&nbsp;<?php printf(__('N&atilde;o foram encontrados Documentos publicados.', 'ifrs-portal-plugin-documentos'), single_term_title('', false)); ?></p>
+                <strong><?php _e('Ops!'); ?></strong>&nbsp;<?php printf(__('N&atilde;o foram encontrados Documentos publicados.', 'ifrs-portal-plugin-documentos'), single_term_title('', false)); ?>
             </div>
         <?php endif; ?>
     <?php endif; ?>
