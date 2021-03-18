@@ -21,26 +21,28 @@
                 }, rwmb_meta('documento_anexos' ))
             );
         ?>
-        <div class="table-responsive">
-            <table class="table table-striped documento__table">
-                <thead>
-                    <tr>
-                        <th><?php _e('Publicado em'); ?></th>
-                        <th><?php _e('Arquivo'); ?></th>
-                        <th><?php _e('Grupo'); ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($documento_files as $key => $file) : ?>
-                    <tr>
-                        <td><?php echo date_i18n( 'd/m/Y H:i', $file['date'] ); ?></td>
-                        <td><a href="<?php echo $file['url']; ?>"><strong><?php echo $file['title']; ?></strong></a></td>
-                        <td><?php echo $file['group']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
+        <?php if ( !empty( $edital_files ) ) : ?>
+            <div class="table-responsive">
+                <table class="table table-striped documento__table">
+                    <thead>
+                        <tr>
+                            <th><?php _e('Publicado em'); ?></th>
+                            <th><?php _e('Arquivo'); ?></th>
+                            <th><?php _e('Grupo'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($documento_files as $key => $file) : ?>
+                        <tr>
+                            <td><?php echo date_i18n( 'd/m/Y H:i', $file['date'] ); ?></td>
+                            <td><a href="<?php echo $file['url']; ?>"><strong><?php echo $file['title']; ?></strong></a></td>
+                            <td><?php echo $file['group']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
     </article>
     <aside class="documento__dados">
         <h3 class="documento__dados-title"><?php _e('Dados do Documento'); ?></h3>
