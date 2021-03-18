@@ -75,6 +75,22 @@ if ( ! function_exists('documento_post_type') ) {
 // MetaBox
 function documentos_meta_boxes( $meta_boxes ) {
     $meta_boxes[] = array(
+        'title'      => __( 'Dados do Documento', 'ifrs-portal-plugin-documentos' ),
+        'post_types' => 'documento',
+        'fields'     => array(
+            array(
+                'id'             => 'documento_date',
+                'name'           => __( 'Data de Publicação', 'ifrs-portal-plugin-documentos' ),
+                'desc'           => __( 'Selecione a data de publicação oficial do Documento, se aplicável.', 'ifrs-portal-plugin-documentos' ),
+                'type'           => 'date',
+                'timestamp'      => true,
+                'js_options'     => array(
+                    'dateFormat' => 'dd/mm/yy'
+                ),
+            ),
+        )
+    );
+    $meta_boxes[] = array(
         'title'      => __( 'Arquivos Associados', 'ifrs-portal-plugin-documentos' ),
         'post_types' => 'documento',
         'priority'   => 'high',

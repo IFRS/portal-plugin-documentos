@@ -46,23 +46,36 @@
     </article>
     <aside class="documento__dados">
         <h3 class="documento__dados-title"><?php _e('Dados do Documento'); ?></h3>
+        <?php if (rwmb_meta( 'documento_date' )) : ?>
         <p>
-            <strong>Tipo</strong>
+            <strong><?php _e('Data Oficial do Documento'); ?></strong>
+            <br>
+            <?php echo date_i18n( get_option( 'date_format' ), rwmb_meta( 'documento_date' ) ); ?>
+        </p>
+        <?php endif; ?>
+        <p>
+            <strong><?php _e('Data de Publica&ccedil;&atilde;o'); ?></strong>
+            <br>
+            <?php echo get_the_date(); ?> <?php _e('às'); ?> <?php echo get_the_time('G\hi'); ?>
+        </p>
+        <p>
+            <strong><?php _e('&Uacute;ltima Modifica&ccedil;&atilde;o'); ?></strong>
+            <br>
+            <?php echo get_the_modified_date(); ?> <?php _e('às'); ?> <?php echo get_the_modified_time('G\hi'); ?>
+        </p>
+        <p>
+            <strong><?php _e('Tipo'); ?></strong>
             <br>
             <?php echo get_the_term_list( get_the_ID(), 'documento_type', '', '<br>', '' ); ?>
         </p>
         <?php $documento_origin_list = get_the_term_list( get_the_ID(), 'documento_origin', '', '<br>', '' ); ?>
         <?php if ($documento_origin_list) : ?>
             <p>
-                <strong>Origem</strong>
+                <strong><?php _e('Origem'); ?></strong>
                 <br>
                 <?php echo $documento_origin_list; ?>
             </p>
         <?php endif; ?>
-        <p>
-            <strong>Publica&ccedil;&atilde;o</strong>
-            <br>
-            <?php echo get_the_date(); ?> <?php _e('às'); ?> <?php echo get_the_time('G\hi'); ?>
-        </p>
+
     </aside>
 </section>
