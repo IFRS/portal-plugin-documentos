@@ -2,7 +2,13 @@
 
 <section class="documento">
     <article class="documento__main">
-        <h2 class="documento__title"><?php the_title(); ?></h2>
+        <h2 class="documento__title">
+            <?php the_title(); ?>
+            <?php if (rwmb_meta( 'documento_date' )) : ?>
+                <br>
+                <small>de <?php echo date_i18n( get_option( 'date_format' ), rwmb_meta( 'documento_date' ) ); ?></small>
+            <?php endif; ?>
+        </h2>
         <div class="documento__content">
             <?php the_content(); ?>
         </div>
@@ -46,13 +52,6 @@
     </article>
     <aside class="documento__dados">
         <h3 class="documento__dados-title"><?php _e('Dados do Documento'); ?></h3>
-        <?php if (rwmb_meta( 'documento_date' )) : ?>
-        <p>
-            <strong><?php _e('Data Oficial do Documento'); ?></strong>
-            <br>
-            <?php echo date_i18n( get_option( 'date_format' ), rwmb_meta( 'documento_date' ) ); ?>
-        </p>
-        <?php endif; ?>
         <p>
             <strong><?php _e('Data de Publica&ccedil;&atilde;o'); ?></strong>
             <br>
