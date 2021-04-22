@@ -27,7 +27,7 @@
                 }, rwmb_meta('documento_anexos' ))
             );
         ?>
-        <?php if ( !empty( $edital_files ) ) : ?>
+        <?php if ( !empty( $documento_files ) ) : ?>
             <div class="table-responsive">
                 <table class="table table-striped documento__table">
                     <thead>
