@@ -14,7 +14,11 @@
             <tr>
                 <td><?php the_modified_date('d/m/Y H:i'); ?></td>
                 <td><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></td>
-                <td><?php echo (rwmb_meta( 'documento_date' )) ? date_i18n( 'd/m/Y', rwmb_meta( 'documento_date' ) ) : '-'; ?></td>
+                <?php if (rwmb_meta( 'documento_date' )) : ?>
+                    <td><?php echo date_i18n( 'd/m/Y', rwmb_meta( 'documento_date' ) ); ?></td>
+                <?php else : ?>
+                    <td><span class="sr-only" aria-hidden="true">01/01/1900</span></td>
+                <?php endif; ?>
                 <td><?php echo get_the_term_list( get_the_ID(), 'documento_type', '', ', ' ); ?></td>
                 <td><?php echo get_the_term_list( get_the_ID(), 'documento_origin', '', ', ' ); ?></td>
             </tr>
