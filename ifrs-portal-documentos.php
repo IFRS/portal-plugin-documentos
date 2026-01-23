@@ -3,11 +3,11 @@ defined('ABSPATH') or die('No script kiddies please!');
 /*
 Plugin Name: IFRS Portal Documentos
 Plugin URI:  https://github.com/IFRS/portal-plugin-documentos
-Description: Plugin para gerenciar Documentos.
-Version:     1.4.1
+Description: Plugin para gerenciamento de Documentos.
+Version:     2.0.0-dev
 Author:      Ricardo Moro
 Author URI:  https://github.com/ricardomoro
-License:     GPL3
+License:     GNU General Public License 3.0
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 Text Domain: ifrs-portal-plugin-documentos
 Domain Path: /lang
@@ -19,6 +19,7 @@ require_once('documento.php');
 require_once('queries.php');
 require_once('roles.php');
 require_once('config.php');
+require_once('blocks.php');
 require_once('widgets/latest.php');
 
 register_activation_hook(__FILE__, function () {
