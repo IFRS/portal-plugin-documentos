@@ -20,14 +20,13 @@ require_once('queries.php');
 require_once('roles.php');
 require_once('config.php');
 require_once('blocks.php');
-require_once('widgets/latest.php');
 
 register_activation_hook(__FILE__, function () {
-    flush_rewrite_rules();
-    ifrs_portal_documentos_addRoles();
+  flush_rewrite_rules();
+  ifrs_portal_documentos_addRoles();
 });
 
 register_deactivation_hook(__FILE__, function () {
-    flush_rewrite_rules();
-    ifrs_portal_documentos_removeRoles();
+  flush_rewrite_rules();
+  ifrs_portal_documentos_removeRoles();
 });
