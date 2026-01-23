@@ -1,80 +1,93 @@
-<?php the_post(); ?>
+<?php
+add_filter('the_title', function($title, $post_id) {
+    // Apenas em single documento
+    if (!is_singular('documento')) {
+        return $title;
+    }
 
-<section class="documento">
-    <article class="documento__main">
-        <h2 class="documento__title">
-            <?php the_title(); ?>
-            <?php if (rwmb_meta( 'documento_date' )) : ?>
-                <br>
-                <small>de <?php echo date_i18n( get_option( 'date_format' ), rwmb_meta( 'documento_date' ) ); ?></small>
-            <?php endif; ?>
-        </h2>
-        <div class="documento__content">
-            <?php the_content(); ?>
-        </div>
-        <?php
-            $documento_files = array();
-            $documento_files = array_merge(
-                $documento_files,
-                array_map(function($arr){
-                    return $arr + ['date' => get_the_modified_date('U', $arr['ID']), 'group' => 'Documento'];
-                }, rwmb_meta('documento_file' ))
-            );
-            $documento_files = array_merge(
-                $documento_files,
-                array_map(function($arr){
-                    return $arr + ['date' => get_the_modified_date('U', $arr['ID']), 'group' => 'Anexos'];
-                }, rwmb_meta('documento_anexos' ))
-            );
-        ?>
-        <?php if ( !empty( $documento_files ) ) : ?>
-            <div class="table-responsive">
-                <table class="table table-striped documento__table">
-                    <thead>
-                        <tr>
-                            <th><?php _e('Publicado em'); ?></th>
-                            <th><?php _e('Arquivo'); ?></th>
-                            <th><?php _e('Grupo'); ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($documento_files as $key => $file) : ?>
-                        <tr>
-                            <td><?php echo date_i18n( 'd/m/Y H:i', $file['date'] ); ?></td>
-                            <td><a href="<?php echo $file['url']; ?>"><strong><?php echo $file['title']; ?></strong></a></td>
-                            <td><?php echo $file['group']; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php endif; ?>
-    </article>
-    <aside class="documento__dados">
-        <h3 class="documento__dados-title"><?php _e('Dados do Documento'); ?></h3>
-        <p>
-            <strong><?php _e('Data de Publica&ccedil;&atilde;o'); ?></strong>
-            <br>
-            <?php echo get_the_date(); ?> <?php _e('às'); ?> <?php echo get_the_time('G\hi'); ?>
-        </p>
-        <p>
-            <strong><?php _e('&Uacute;ltima Modifica&ccedil;&atilde;o'); ?></strong>
-            <br>
-            <?php echo get_the_modified_date(); ?> <?php _e('às'); ?> <?php echo get_the_modified_time('G\hi'); ?>
-        </p>
-        <p>
-            <strong><?php _e('Tipo'); ?></strong>
-            <br>
-            <?php echo get_the_term_list( get_the_ID(), 'documento_type', '', '<br>', '' ); ?>
-        </p>
+    // Adiciona a data em small
+    if (rwmb_meta('documento_date', array(), $post_id)) {
+        $title .= '<br><small>de ' .
+            date_i18n(get_option('date_format'), rwmb_meta('documento_date', array(), $post_id)) .
+            '</small>';
+    }
+
+    return $title;
+}, 10, 2);
+?>
+<?php ob_start(); ?>
+
+<?php do_action('ifrs_documentos_before_single'); ?>
+
+<article class="documento">
+    <!-- wp:post-title /-->
+
+    <!-- wp:group {"className":"documento__meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+    <div class="wp-block-group documento__meta">
+        <!-- wp:paragraph -->
+        <p><strong><?php _e('Data de Cadastro'); ?>:</strong> <?php echo get_the_date(); ?> <?php _e('às'); ?> <?php echo get_the_time('G\hi'); ?></p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph -->
+        <p><strong><?php _e('&Uacute;ltima Modifica&ccedil;&atilde;o'); ?>:</strong> <?php echo get_the_modified_date(); ?> <?php _e('às'); ?> <?php echo get_the_modified_time('G\hi'); ?></p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:paragraph -->
+        <p><strong><?php _e('Tipo'); ?>:</strong> <?php echo get_the_term_list( get_the_ID(), 'documento_type', '', '<br>', '' ); ?></p>
+        <!-- /wp:paragraph -->
+
         <?php $documento_origin_list = get_the_term_list( get_the_ID(), 'documento_origin', '', '<br>', '' ); ?>
         <?php if ($documento_origin_list) : ?>
-            <p>
-                <strong><?php _e('Origem'); ?></strong>
-                <br>
-                <?php echo $documento_origin_list; ?>
-            </p>
+            <!-- wp:paragraph -->
+            <p><strong><?php _e('Origem'); ?>:</strong> <?php echo $documento_origin_list; ?></p>
+            <!-- /wp:paragraph -->
         <?php endif; ?>
+    </div>
+    <!-- /wp:group -->
 
-    </aside>
-</section>
+    <!-- wp:post-content /-->
+
+    <?php
+        $documento_files = array();
+        $documento_files = array_merge(
+            $documento_files,
+            array_map(function($arr){
+                return $arr + ['date' => get_the_modified_date('U', $arr['ID']), 'group' => 'Documento'];
+            }, rwmb_meta('documento_file' ))
+        );
+        $documento_files = array_merge(
+            $documento_files,
+            array_map(function($arr){
+                return $arr + ['date' => get_the_modified_date('U', $arr['ID']), 'group' => 'Anexos'];
+            }, rwmb_meta('documento_anexos' ))
+        );
+    ?>
+    <?php if ( !empty( $documento_files ) ) : ?>
+        <!-- wp:table {"className":"is-style-stripes documento__table"} -->
+        <figure class="wp-block-table is-style-stripes documento__table">
+            <table class="has-fixed-layout">
+                <thead>
+                    <tr>
+                        <th><?php _e('Publicado em'); ?></th>
+                        <th><?php _e('Arquivo'); ?></th>
+                        <th><?php _e('Grupo'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($documento_files as $key => $file) : ?>
+                    <tr>
+                        <td><?php echo date_i18n( 'd/m/Y H:i', $file['date'] ); ?></td>
+                        <td><a href="<?php echo $file['url']; ?>"><strong><?php echo $file['title']; ?></strong></a></td>
+                        <td><?php echo $file['group']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </figure>
+        <!-- /wp:table -->
+    <?php endif; ?>
+</article>
+
+<?php do_action('ifrs_documentos_after_single'); ?>
+
+<?php echo do_blocks(ob_get_clean()); ?>
