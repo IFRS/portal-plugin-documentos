@@ -55,3 +55,20 @@ add_filter('taxonomy_template', function($template) {
 
     return $template;
 });
+
+// Ajusta o título padrão do bloco Query Title para esta taxonomia e busca
+add_filter('get_the_archive_title', function($title) {
+    if (is_search()) {
+        $query = trim(get_search_query());
+        $title = $query
+            ? sprintf(__('Resultados da busca por "%s"', 'ifrs-portal-plugin-documentos'), $query)
+            : __('Resultados da busca', 'ifrs-portal-plugin-documentos');
+    } elseif (is_tax('documento_origin')) {
+        $term = get_queried_object();
+        if ($term && ! is_wp_error($term)) {
+            $title = sprintf(__('Documentos de %s', 'ifrs-portal-plugin-documentos'), $term->name);
+        }
+    }
+
+    return $title;
+});
