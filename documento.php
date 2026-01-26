@@ -162,6 +162,9 @@ add_filter('archive_template', function($template) {
     return $template;
 });
 
+/**
+ * Template
+ */
 add_filter('single_template', function($template) {
     global $post;
 
@@ -182,3 +185,19 @@ add_filter('wp_editor_settings', function($settings) {
     }
     return $settings;
 });
+
+/**
+ * Ajusta o título
+ */
+add_filter('the_title', function($title, $post_id) {
+  if (is_singular('documento')) {
+    // Adiciona a data em small
+    if (rwmb_meta('documento_date', array(), $post_id)) {
+        $title .= '<br><small>de ' .
+        date_i18n(get_option('date_format'), rwmb_meta('documento_date', array(), $post_id)) .
+        '</small>';
+    }
+  }
+
+  return $title;
+}, 10, 2);

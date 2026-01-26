@@ -1,20 +1,3 @@
-<?php
-add_filter('the_title', function($title, $post_id) {
-    // Apenas em single documento
-    if (!is_singular('documento')) {
-        return $title;
-    }
-
-    // Adiciona a data em small
-    if (rwmb_meta('documento_date', array(), $post_id)) {
-        $title .= '<br><small>de ' .
-            date_i18n(get_option('date_format'), rwmb_meta('documento_date', array(), $post_id)) .
-            '</small>';
-    }
-
-    return $title;
-}, 10, 2);
-?>
 <?php ob_start(); ?>
 
 <?php do_action('ifrs_documentos_before_single'); ?>
