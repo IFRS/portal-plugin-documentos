@@ -1,9 +1,9 @@
 {
   "private": true,
   "name": "ifrs-portal-plugin-documentos",
-  "version": "1.4.1",
   "scripts": {
     "build": "wp-scripts build src/block.js",
+    "postbuild": "cp -r ./*.php ./templates build/ ",
     "check-engines": "wp-scripts check-engines",
     "check-licenses": "wp-scripts check-licenses",
     "format": "wp-scripts format",
