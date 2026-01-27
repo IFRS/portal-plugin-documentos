@@ -13,12 +13,12 @@
 
   $has_filter = !empty($_POST['documento-data-inicio']) || !empty($_POST['documento-data-fim']) || !empty($_POST['documento_type']) || !empty($_POST['documento_origin']);
 ?>
-<aside class="filter">
+<aside class="documentos__filter">
   <details <?php echo ($has_filter) ? 'open' : ''; ?>>
     <summary><?php _e('Filtros', 'ifrs-portal-plugin-documentos'); ?></summary>
 
-    <form action="<?php echo get_post_type_archive_link( 'documento' ); ?>" method="POST" class="filter__form">
-      <fieldset class="form-row">
+    <form action="<?php echo get_post_type_archive_link( 'documento' ); ?>" method="POST">
+      <fieldset class="row">
         <legend class="col-12">Data do Documento</legend>
         <div class="form-group col-12 col-sm-6">
           <?php $field_id = uniqid(); ?>
@@ -57,7 +57,7 @@
       </fieldset>
 
       <div class="btn-group" role="group" aria-label="Ações do Filtro">
-        <input type="submit" value="Filtrar" class="btn btn-primary">
+        <input type="submit" value="Filtrar" class="btn btn-outline-primary">
         <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="btn btn-outline-secondary"><?php _e('Limpar', 'ifrs-portal-plugin-documentos'); ?></a>
       </div>
     </form>
