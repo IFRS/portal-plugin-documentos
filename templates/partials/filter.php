@@ -56,10 +56,12 @@
         <?php endforeach; ?>
       </fieldset>
 
-      <div class="btn-group" role="group" aria-label="Ações do Filtro">
-        <input type="submit" value="Filtrar" class="btn btn-outline-primary">
-        <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="btn btn-outline-secondary"><?php _e('Limpar', 'ifrs-portal-plugin-documentos'); ?></a>
-      </div>
+      <fieldset>
+        <div class="btn-group" role="group" aria-label="Ações do Filtro">
+          <input type="submit" value="Filtrar" class="btn btn-outline-primary">
+          <a href="<?php echo get_post_type_archive_link( 'documento' ); ?>" class="btn btn-outline-secondary"><?php _e('Limpar', 'ifrs-portal-plugin-documentos'); ?></a>
+        </div>
+      </fieldset>
     </form>
   </details>
 </aside>
