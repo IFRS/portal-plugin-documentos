@@ -162,9 +162,6 @@ add_filter('archive_template', function($template) {
     return $template;
 });
 
-/**
- * Template
- */
 add_filter('single_template', function($template) {
     global $post;
 

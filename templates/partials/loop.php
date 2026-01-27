@@ -1,4 +1,4 @@
-<table class="table documentos__table">
+<table class="table table-hover documentos__table">
   <thead>
     <tr>
       <th><?php _e('&Uacute;ltima Atualiza&ccedil;&atilde;o'); ?></th>

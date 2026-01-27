@@ -46,7 +46,7 @@
     );
   ?>
   <?php if ( !empty( $documento_files ) ) : ?>
-    <table class="table documento__table">
+    <table class="table table-striped documento__table">
       <thead>
         <tr>
           <th><?php _e('Publicado em'); ?></th>
