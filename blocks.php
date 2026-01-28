@@ -37,7 +37,7 @@ function render_ultimos_documentos_block($attributes) {
             <?php
               $terms = get_the_terms(get_the_ID(), 'documento_type');
               if ($terms && !is_wp_error($terms)) {
-                echo '<ul class="documento-recente__types"><li>' .
+                echo '<ul class="documento-recente__taxonomy-list"><li>' .
                 implode('</li><li>', wp_list_pluck($terms, 'name')) .
                 '</li></ul>';
               }
