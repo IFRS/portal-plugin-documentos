@@ -73,7 +73,7 @@ function register_ultimos_documentos_block() {
   }
 
   // Define o caminho para os arquivos do bloco
-  $block_dir = plugin_dir_path(__FILE__) . 'build/';
+  $block_dir = plugin_dir_path(__FILE__);
   $block_script = $block_dir . 'block.js';
   $block_asset_path = $block_dir . 'block.asset.php';
 
@@ -84,7 +84,7 @@ function register_ultimos_documentos_block() {
     // Registra o script do bloco
     wp_register_script(
       'ifrs-ultimos-documentos-block',
-      plugins_url('build/block.js', __FILE__),
+      plugins_url('block.js', __FILE__),
       isset($asset_file['dependencies']) ? $asset_file['dependencies'] : array(),
       isset($asset_file['version']) ? $asset_file['version'] : filemtime($block_script)
     );
