@@ -1,7 +1,9 @@
 import { registerBlockType } from '@wordpress/blocks';
 import {
   useBlockProps,
-  InspectorControls
+  InspectorControls,
+  RichText,
+  InnerBlocks
 } from '@wordpress/block-editor';
 import {
   PanelBody,
@@ -27,27 +29,24 @@ registerBlockType('ifrs/ultimos-documentos', {
     const mockDocuments = [
       {
         id: 1,
-        date: '22/01/2026',
-        time: '14h30',
+        date: '28/12/2009',
+        time: '09h30',
         types: ['Comunicado'],
-        title: 'Comunicado importante',
-        link: '#'
+        title: 'Comunicado importante'
       },
       {
         id: 2,
-        date: '21/01/2026',
+        date: '29/12/2009',
         time: '10h15',
         types: ['Portaria', 'Resolução'],
-        title: 'Resolução sobre novos procedimentos',
-        link: '#'
+        title: 'Resolução sobre novos procedimentos'
       },
       {
         id: 3,
-        date: '20/01/2026',
+        date: '30/12/2009',
         time: '16h45',
         types: ['Ofício'],
-        title: 'Ofício circular para todos os campi',
-        link: '#'
+        title: 'Ofício circular para todos os campi'
       },
     ];
 
@@ -73,35 +72,42 @@ registerBlockType('ifrs/ultimos-documentos', {
 
         <div {...blockProps}>
           <div className="ultimos-documentos">
-            {title && (
-              <h2 className="ultimos-documentos__title">{title}</h2>
-            )}
+            <RichText
+              tagName="h2"
+              className="ultimos-documentos__title"
+              value={title}
+              onChange={(value) => setAttributes({ title: value })}
+              placeholder="Insira o título"
+              allowedFormats={[]}
+            />
             {mockDocuments.slice(0, postsPerPage).map((doc) => (
-              <div key={doc.id} className="ultimos-documentos__documento">
-                <p className="ultimos-documentos__documento-datetime">
-                  {doc.date}
-                  &agrave;s
-                  {doc.time}
-                </p>
-                &bull;
-                <ul className="ultimos-documentos__documento-types">
-                  {doc.types.map((type, idx) => (
-                    <li key={idx}>{type}</li>
-                  ))}
-                </ul>
-                <h3 className="ultimos-documentos__documento-title">
-                  <a href={doc.link}>{doc.title}</a>
+              <a key={doc.id} href="#" className="documento-recente">
+                <div className="documento-recente__meta">
+                  <p class="documento-recente__datetime">
+                    {doc.date}
+                    &agrave;s
+                    {doc.time}
+                  </p>
+
+                  &bull;
+                  <ul className="documento-recente__taxonomy-list">
+                    {doc.types.map((type, idx) => (
+                      <li key={idx}>{type}</li>
+                    ))}
+                  </ul>
+                </div>
+                <h3 className="documento-recente__title">
+                  {doc.title}
                 </h3>
-              </div>
+              </a>
             ))}
           </div>
 
-          <div className="acesso-todos-documentos">
-            <hr className="acesso-todos-documentos__separador" />
-            <a href="#" className="acesso-todos-documentos__link">
-              Acesse todos os Documentos
-            </a>
-          </div>
+          <InnerBlocks
+            allowedBlocks={['core/buttons']}
+            template={[['core/buttons', { layout: { type: 'flex', justifyContent: 'center' } }, [['core/button', { className: 'is-style-outline', text: 'Acesse todos os Documentos' }]]]]}
+            templateLock="insert"
+          />
         </div>
       </>
     );
